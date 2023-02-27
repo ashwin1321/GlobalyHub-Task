@@ -13,7 +13,7 @@ exports.submitForm = async (req, res) => {
 
         // so we have to check if its empty or not
         if (!error.isEmpty()) {
-            return res.status(400).json({ error: error.array() })
+            return res.json({ error: error.array() })
         }
 
         const query = `insert into userss (name, email, phone, gender, hobbies) values ($1, $2, $3, $4, $5);`;
