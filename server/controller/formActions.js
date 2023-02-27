@@ -20,7 +20,7 @@ exports.submitForm = async (req, res) => {
         const query = `insert into userss (name, email, phone, gender, hobbies) values ($1, $2, $3, $4, $5);`;
         const values = [name, email, phone, gender, hobbies]
 
-        const result = await client.query(query, values)
+        // const result = await client.query(query, values)
         res.status(201).json({ message: 'Form submitted successfully' })
 
     } catch (err) {

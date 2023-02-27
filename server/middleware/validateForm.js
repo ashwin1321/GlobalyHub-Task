@@ -4,7 +4,7 @@ exports.validateForm =
     [
         body('name').not().isEmpty().isLength({ min: 5 }).withMessage('enter your name in correct format'),
         body('email').isEmail().not().isEmpty().withMessage('enter your email in correct format'),
-        body('phone').isNumeric(10).not().isEmpty().withMessage('enter your phone number in correct format'),
+        body('phone').isNumeric().isLength({ min: 10, max: 10 }).withMessage("please enter 10 number").not().isEmpty(),
         body('gender')
             .isIn(['male', 'female', 'others'])
             .withMessage('please select a option'),
