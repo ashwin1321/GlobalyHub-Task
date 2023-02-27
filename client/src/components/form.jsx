@@ -7,6 +7,12 @@ const form = () => {
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
   const [hobbies, setHobbies] = useState([]);
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [genderError, setGenderError] = useState("");
+  const [hobbiesError, setHobbiesError] = useState("");
+
   const data = {
     name,
     email,
@@ -18,22 +24,31 @@ const form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (name.length < 5) {
-      alert("Name must me atleast 5 character long!!");
-    }
-    if (!email.includes("@")) {
-      alert("invalid email format!!");
-    }
-    if (phone.length !== 10) {
-      alert("phone number must be 10 character long!!");
-    } else {
-      axios.post("http://localhost:5000/form/submit-form", data).then((res) => {
-        if (res.data.error) {
-          alert(`Error: ${res.data.error}`);
+    axios.post("http://localhost:5000/form/submit-form", data).then((res) => {
+      if (res.data.error) {
+        console.log(res.data.error);
+        if (res.data.error[0].param === "name") {
+          setNameError(res.data.error[0].msg);
         }
-        alert(`Success: ${res.data.message}`);
-      });
-    }
+        if (res.data.error[0].param === "email") {
+          setEmailError(res.data.error[0].msg);
+        }
+        if (res.data.error[0].param === "phone") {
+          setPhoneError(res.data.error[0].msg);
+        }
+
+        if (res.data.error[0].param === "gender") {
+          setGenderError(res.data.error[0].msg);
+        }
+
+        if (res.data.error[0].param === "hobbies") {
+          setHobbiesError(res.data.error[0].msg);
+        }
+        return;
+      }
+      alert(`Success: ${res.data.message}`);
+      window.location.reload(false);
+    });
   };
 
   return (
@@ -46,6 +61,8 @@ const form = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
+        <p style={{ color: "red" }}>{nameError}</p>
+
         <input
           type="email"
           placeholder="Enter your Email"
@@ -53,6 +70,8 @@ const form = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <p style={{ color: "red" }}>{emailError}</p>
+
         <input
           type="number"
           placeholder="Enter your number"
@@ -60,6 +79,7 @@ const form = () => {
           onChange={(e) => setPhone(e.target.value)}
           required
         />
+        <p style={{ color: "red" }}>{phoneError}</p>
 
         <label>
           Gender:
@@ -88,6 +108,7 @@ const form = () => {
           />
           Others
         </label>
+        <p style={{ color: "red" }}>{genderError}</p>
 
         <label>
           Hobbies:
@@ -134,6 +155,7 @@ const form = () => {
           />
           Listening To Music
         </label>
+        <p style={{ color: "red" }}>{hobbiesError}</p>
 
         <button type="submit">Submit</button>
       </form>
