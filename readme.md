@@ -64,7 +64,7 @@ node index.js
 ### create Vite App
 
 ```
-create vite App
+yarn create vite
 ```
 
 ### add axios
