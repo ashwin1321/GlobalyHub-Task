@@ -7,7 +7,6 @@ const form = () => {
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
   const [hobbies, setHobbies] = useState([]);
-
   const data = {
     name,
     email,
@@ -19,12 +18,22 @@ const form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:5000/form/submit-form", data).then((res) => {
-      if (res.data.error) {
-        alert(`Error: ${res.data.error}`);
-      }
-      alert(`Success: ${res.data.message}`);
-    });
+    if (name.length < 5) {
+      alert("Name must me atleast 5 character long!!");
+    }
+    if (!email.includes("@")) {
+      alert("invalid email format!!");
+    }
+    if (phone.length !== 10) {
+      alert("phone number must be 10 character long!!");
+    } else {
+      axios.post("http://localhost:5000/form/submit-form", data).then((res) => {
+        if (res.data.error) {
+          alert(`Error: ${res.data.error}`);
+        }
+        alert(`Success: ${res.data.message}`);
+      });
+    }
   };
 
   return (
