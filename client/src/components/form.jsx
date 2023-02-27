@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const form = () => {
   const [name, setName] = useState("");
@@ -7,19 +8,22 @@ const form = () => {
   const [gender, setGender] = useState("");
   const [hobbies, setHobbies] = useState([]);
 
-  const phonee = parseInt(phone);
-
   const data = {
     name,
     email,
-    phonee,
+    phone,
     gender,
     hobbies,
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+
+    axios.post("http://localhost:5000/form/submit-form", data).then((res) => {
+      if (res.data.error) {
+        alert(`Error: ${res.data.error}`);
+      }
+    });
   };
 
   return (
