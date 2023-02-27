@@ -3,3 +3,6 @@ const { submitForm } = require('../controller/formActions');
 
 router.route('/submit-form')
     .post(submitForm)
+
+
+module.exports = router;

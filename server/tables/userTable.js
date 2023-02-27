@@ -2,7 +2,7 @@ const { client } = require('../config/db')
 
 const createUserTable = async () => {
     try {
-        await client.query(`CREATE TABLE IF NOT EXISTS users (
+        await client.query(`CREATE TABLE IF NOT EXISTS userss (
             id SERIAL PRIMARY KEY,
             name varchar(100) NOT NULL,
             email varchar(100) NOT NULL,
