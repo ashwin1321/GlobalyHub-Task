@@ -23,6 +23,7 @@ const form = () => {
       if (res.data.error) {
         alert(`Error: ${res.data.error}`);
       }
+      alert(`Success: ${res.data.message}`);
     });
   };
 
