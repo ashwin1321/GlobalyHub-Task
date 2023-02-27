@@ -12,6 +12,7 @@ const form = () => {
   const [phoneError, setPhoneError] = useState("");
   const [genderError, setGenderError] = useState("");
   const [hobbiesError, setHobbiesError] = useState("");
+  //
 
   const data = {
     name,
