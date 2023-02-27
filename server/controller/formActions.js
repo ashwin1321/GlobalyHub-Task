@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator')
 exports.submitForm = async (req, res) => {
     try {
         const error = validationResult(req)
+        const { name, email, phone, gender, hobbies } = req.body;
 
         // if (error) {
         //     return res.status(400).json({ message: error.array() })           // error is and array so even its empty it will return true
@@ -14,8 +15,6 @@ exports.submitForm = async (req, res) => {
         if (!error.isEmpty()) {
             return res.status(400).json({ error: error.array() })
         }
-
-        const { name, email, phone, gender, hobbies } = req.body;
 
         const query = `insert into userss (name, email, phone, gender, hobbies) values ($1, $2, $3, $4, $5);`;
         const values = [name, email, phone, gender, hobbies]
