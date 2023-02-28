@@ -14,16 +14,10 @@
 
 ## Server Side Installation
 
-### Npm Initialization
-
-```bash
-  npm init -y
-```
-
 ### Install packages
 
 ```bash
- yarn add express, pg, cors, express-validator, dotenv
+ yarn
 ```
 
 ### Setup Database
@@ -61,16 +55,10 @@ node index.js
 
 ## Client Side Installation
 
-### create Vite App
+### Install packages
 
 ```
-yarn create vite
-```
-
-### add axios
-
-```
-yarn add axios
+yarn
 ```
 
 ### run the development server
@@ -90,3 +78,4 @@ yarn run dev
 
 - The error message will be shown right under the form field.
 - Fill the form according to the error message and submit.
+
